@@ -1,0 +1,57 @@
+# use epsilon greedy action selector
+action_selector: "epsilon_greedy"
+epsilon_start: 1.0
+epsilon_finish: 0.05
+epsilon_anneal_time: 50000
+evaluation_epsilon: 0.0
+
+
+episode_limit_explore: 150
+episode_limit_exploit: 150
+episode_limit_exploit_start_t: 50000
+
+
+runner: "episode"
+
+
+buffer_size: 5000
+
+
+# update the target network every {} episodes
+target_update_interval_or_tau: 200
+
+
+obs_agent_id: True
+obs_last_action: False
+obs_individual_obs: False
+
+
+# use the Q_Learner to train
+standardise_returns: False
+standardise_rewards: True
+
+
+
+homeo_lr: 1e-4
+homeo_beta: 1e-3
+homeo_target: 0.7   #0.7 0.9 relaxed
+homeo_start_t : 50000    #50k 100K relaxed
+homeo_interval: 100       # update gain every N forward steps 1K relaxed (100 non-relaxed)
+
+
+
+agent_output_type: "q"
+learner: "LiDho_learner"
+double_q: True
+mixer: "qmix"
+use_rnn: True 
+mixing_embed_dim: 32
+hypernet_layers: 2
+hypernet_embed: 64
+
+
+use_lipschitz: True
+lipschitz_constant: 6   #3
+
+
+name: "LiDho"

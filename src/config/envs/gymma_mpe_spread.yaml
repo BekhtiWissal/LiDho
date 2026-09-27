@@ -1,0 +1,16 @@
+env: "gymma"
+
+env_args:
+  key: "pz-mpe-simple-spread-v3"
+  time_limit: 25
+  pretrained_wrapper: null
+  N: 10
+  local_ratio: 0.5
+
+test_greedy: True
+test_nepisode: 100
+test_interval: 50000
+log_interval: 50000
+runner_log_interval: 10000
+learner_log_interval: 10000
+t_max: 2050000
