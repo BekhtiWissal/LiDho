@@ -1,4 +1,4 @@
-# LiDho — built on EPyMARL
+# LiDho
 
 This repository contains **LiDho**, our multi-agent reinforcement learning framework, implemented on top of
 [EPyMARL](https://github.com/uoe-agents/epymarl) (Extended PyMARL). All EPyMARL algorithms (QMIX, VDN, IQL, COMA,
@@ -29,7 +29,7 @@ Then install the supported environments (SMAC, SMACv2, SMAClite, matrix games, L
 pip install -r env_requirements.txt
 ```
 
-### 1.2 StarCraft II and SMAC
+### 1.2 SMAC
 
 SMAC needs a local StarCraft II installation and the SMAC map files. Follow the official
 [SMAC installation instructions](https://github.com/oxwhirl/smac#installing-starcraft-ii). In short:
@@ -38,20 +38,11 @@ SMAC needs a local StarCraft II installation and the SMAC map files. Follow the 
    ```sh
    pip install git+https://github.com/oxwhirl/smac.git
    ```
-2. **Install StarCraft II (Linux).** Download the Linux build of StarCraft II from
-   [Blizzard's s2client-proto repository](https://github.com/Blizzard/s2client-proto#downloads) (SMAC requires
-   version >= 3.16.1; the SMAC results use version 4.10). By default SMAC expects the game in `~/StarCraftII/`.
-   If you install it somewhere else, set the `SC2PATH` environment variable:
-   ```sh
-   export SC2PATH=/path/to/StarCraftII
-   ```
-   On macOS and Windows, install StarCraft II through the Battle.net client.
-3. **Install the SMAC maps.** Download
+2. **Install the SMAC maps.** Download
    [`SMAC_Maps.zip`](https://github.com/oxwhirl/smac/releases/download/v0.1-beta1/SMAC_Maps.zip) and extract it into
    `$SC2PATH/Maps/` (create the `Maps` directory if it does not exist).
 
-For SMACv2, also see the [SMACv2 repository](https://github.com/oxwhirl/smacv2). For more environment-specific
-details, see the [EPyMARL README](https://github.com/uoe-agents/epymarl#installation--run-instructions).
+For more environment-specific details, see the [EPyMARL README](https://github.com/uoe-agents/epymarl#installation--run-instructions).
 
 ---
 
@@ -86,7 +77,7 @@ python src/main.py --config=qmix --env-config=gymma with env_args.time_limit=25 
 Replace `qmix` with any other algorithm config and `3s5z` / `env_args.key` with the map or task of your choice. See the
 [EPyMARL README](https://github.com/uoe-agents/epymarl) for the full list of environments, keys and options.
 
-### 2.2 LiDho (our framework)
+### 2.2 LiDho
 
 ```sh
 python src/main.py --config=lidho --env-config=sc2 with env_args.map_name="3s5z" episode_limit_explore=150 episode_limit_exploit=170 lipschitz_constant=2 homeostatic_plasticity=True
@@ -95,10 +86,10 @@ python src/main.py --config=lidho --env-config=sc2 with env_args.map_name="3s5z"
 | Argument | Description | Default |
 |---|---|---|
 | `env_args.map_name` | SMAC map to train on (e.g. `3m`, `3s5z`, `MMM2`, `corridor`). | `3m` |
-| `episode_limit_explore` | Episode horizon (max. steps) during the **exploration** phase. | `150` |
-| `episode_limit_exploit` | Episode horizon (max. steps) during the **exploitation** phase. | `150` |
+| `episode_limit_explore` | Episode horizon (max. steps) during the **exploration** phase. | `Depends on map` |
+| `episode_limit_exploit` | Episode horizon (max. steps) during the **exploitation** phase. | `Depends on map` |
 | `episode_limit_exploit_start_t` | Environment timestep at which the exploitation phase starts. | `50000` |
-| `lipschitz_constant` | Upper bound on the spectral norm of each feedforward weight matrix. | `6` |
+| `lipschitz_constant` | Upper bound on the spectral norm of each feedforward weight matrix. | `2` |
 | `use_lipschitz` | Turn the Lipschitz constraint on or off. | `True` |
 | `homeostatic_plasticity` | Turn homeostatic plasticity in the agents' RNN on (`True`) or off (`False`). | `False` |
 
