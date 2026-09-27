@@ -126,7 +126,7 @@ def run_sequential(args, logger):
     preprocess = {"actions": ("actions_onehot", [OneHot(out_dim=args.n_actions)])}
 
     native_limit = env_info["episode_limit"]
-    if getattr(args, "name", "").upper() == "LiDho":
+    if getattr(args, "name", "").upper() == "LIDHO":
         max_episode_limit = max(
             getattr(args, "episode_limit_explore", native_limit) or native_limit,
             getattr(args, "episode_limit_exploit", native_limit) or native_limit,
